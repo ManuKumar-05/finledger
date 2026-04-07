@@ -1,0 +1,61 @@
+.sidebar {
+  position: fixed; left:0; top:0; bottom:0;
+  width: var(--sidebar-width);
+  background: var(--surface); border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; z-index: 100;
+}
+.logo { padding: 22px 20px 18px; border-bottom: 1px solid var(--border); }
+.logoText { font-family: var(--font-display); font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+.logoText span { color: var(--accent); }
+.logoSub { font-size: 9px; color: var(--text3); letter-spacing: 1.4px; margin-top: 3px; }
+
+.userRow {
+  padding: 15px 18px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent-dim); border: 1px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 13px;
+  color: var(--accent); flex-shrink: 0;
+}
+.userInfo { min-width: 0; }
+.userName { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.roleChip {
+  display: inline-block; font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.7px;
+  padding: 2px 8px; border-radius: 20px; border: 1px solid; margin-top: 2px;
+}
+.yellow { background: var(--yellow-dim); color: var(--yellow); border-color: rgba(245,200,66,0.35); }
+.blue   { background: var(--blue-dim);   color: var(--blue);   border-color: rgba(77,159,255,0.35); }
+.purple { background: var(--purple-dim); color: var(--purple); border-color: rgba(167,139,250,0.35); }
+
+.nav { flex: 1; padding: 14px 10px; overflow-y: auto; }
+.navSection {
+  font-size: 9px; text-transform: uppercase; letter-spacing: 1.6px;
+  color: var(--text3); padding: 0 10px; margin: 12px 0 5px;
+}
+.navSection:first-child { margin-top: 0; }
+.navItem {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: var(--radius-sm);
+  color: var(--text2); font-size: 13px; margin-bottom: 2px;
+  transition: var(--transition); position: relative;
+  text-decoration: none;
+}
+.navItem:hover { background: var(--surface2); color: var(--text); }
+.active { background: var(--accent-dim) !important; color: var(--accent) !important; }
+.active::before {
+  content: ''; position: absolute; left: -10px; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 18px; background: var(--accent); border-radius: 0 2px 2px 0;
+}
+.navIcon { font-size: 15px; width: 20px; text-align: center; flex-shrink: 0; }
+
+.footer { padding: 12px; border-top: 1px solid var(--border); }
+.logout {
+  width: 100%; border: 1px solid var(--border); color: var(--text2);
+  border-radius: var(--radius-sm); padding: 10px; font-size: 12px;
+  transition: var(--transition); display: flex; align-items: center; justify-content: center;
+}
+.logout:hover { border-color: var(--red); color: var(--red); background: var(--red-dim); }

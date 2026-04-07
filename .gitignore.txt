@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment files (never commit real secrets)
+.env
+backend/.env
+frontend/.env
+frontend/.env.production
+
+# Database (generated at runtime)
+backend/data/
+*.db
+*.db-shm
+*.db-wal
+
+# Build output
+frontend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

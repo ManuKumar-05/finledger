@@ -1,0 +1,36 @@
+/* DemoBanner.module.css */
+.banner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 10px 32px;
+  background: rgba(245,200,66,0.07);
+  border-bottom: 1px solid rgba(245,200,66,0.2);
+  flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 200;
+  backdrop-filter: blur(8px);
+}
+.left  { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+.pill {
+  background: rgba(245,200,66,0.15); color: #f5c842;
+  border: 1px solid rgba(245,200,66,0.35); border-radius: 20px;
+  font-size: 9px; font-weight: 700; letter-spacing: 1px;
+  padding: 3px 9px; white-space: nowrap; flex-shrink: 0;
+}
+.msg { font-size: 12px; color: #8a95a3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.msg strong { color: #f5c842; font-weight: 500; }
+
+.registerBtn {
+  background: #f5c842; color: #000;
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 11px;
+  padding: 7px 16px; border-radius: 7px; border: none;
+  cursor: pointer; white-space: nowrap; transition: all 0.2s;
+}
+.registerBtn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.dismissBtn {
+  background: transparent; color: #4f5b6a; border: none;
+  font-size: 14px; padding: 4px 6px; cursor: pointer;
+  transition: color 0.2s; line-height: 1;
+}
+.dismissBtn:hover { color: #e8edf3; }

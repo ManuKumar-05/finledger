@@ -1,0 +1,29 @@
+# render.yaml — Deploy backend on Render.com (free tier)
+# Place this file in the ROOT of your GitHub repository
+
+services:
+  - type: web
+    name: finledger-api
+    env: node
+    region: singapore   # closest to India
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npm run seed
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true        # Render auto-generates a secure random value
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: DB_PATH
+        value: ./data/finledger.db
+      - key: CORS_ORIGINS
+        value: https://finledger.vercel.app  # ← Update after deploying frontend
+      - key: PORT
+        value: 10000
+    disk:
+      name: finledger-data
+      mountPath: /opt/render/project/src/backend/data
+      sizeGB: 1

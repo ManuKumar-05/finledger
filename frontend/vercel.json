@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "name": "finledger",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "env": {
+    "VITE_API_URL": "https://finledger-api.onrender.com"
+  }
+}

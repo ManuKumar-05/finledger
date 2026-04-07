@@ -1,0 +1,98 @@
+/* UI.module.css */
+
+/* ── Spinner ── */
+.spinner {
+  border: 2px solid var(--border2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+/* ── Button ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 7px; border-radius: var(--radius-sm);
+  font-family: var(--font-body); font-weight: 500;
+  transition: var(--transition); white-space: nowrap; cursor: pointer;
+  border: 1px solid transparent;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.md { padding: 9px 18px; font-size: 12px; }
+.sm { padding: 6px 12px; font-size: 11px; }
+.lg { padding: 13px 24px; font-size: 14px; }
+.primary { background: var(--accent); color: #000; font-family: var(--font-display); font-weight: 700; }
+.primary:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+.secondary { background: var(--surface2); color: var(--text2); border-color: var(--border); }
+.secondary:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.danger { background: var(--red-dim); color: var(--red); border-color: rgba(255,77,106,0.3); }
+.danger:hover:not(:disabled) { background: var(--red); color: #fff; }
+.ghost { background: transparent; color: var(--text2); }
+.ghost:hover:not(:disabled) { color: var(--text); }
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex; align-items: center;
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 3px 9px; border-radius: 20px;
+  border: 1px solid;
+}
+.badge-accent  { background: var(--accent-dim);  color: var(--accent);  border-color: rgba(0,229,180,0.3); }
+.badge-red     { background: var(--red-dim);    color: var(--red);    border-color: rgba(255,77,106,0.3); }
+.badge-yellow  { background: var(--yellow-dim); color: var(--yellow); border-color: rgba(245,200,66,0.3); }
+.badge-blue    { background: var(--blue-dim);   color: var(--blue);   border-color: rgba(77,159,255,0.3); }
+.badge-purple  { background: var(--purple-dim); color: var(--purple); border-color: rgba(167,139,250,0.3); }
+
+/* ── Modal ── */
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.72);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; animation: fadeIn 0.2s ease; backdrop-filter: blur(4px);
+}
+.modal {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; max-height: 92vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg); animation: fadeUp 0.25s ease;
+}
+.modalHeader {
+  padding: 22px 28px 18px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modalTitle { font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.modalClose {
+  width: 30px; height: 30px; border-radius: 7px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); font-size: 14px; display: flex;
+  align-items: center; justify-content: center; transition: var(--transition);
+}
+.modalClose:hover { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.modalBody   { padding: 22px 28px; }
+.modalFooter { padding: 14px 28px 22px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--border); }
+
+/* ── Field ── */
+.field { margin-bottom: 16px; }
+.label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text2); margin-bottom: 6px; font-weight: 500; }
+.input {
+  width: 100%; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text); padding: 10px 13px; font-size: 12.5px;
+  font-family: var(--font-body); transition: var(--transition);
+}
+.input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+.input::placeholder { color: var(--text3); }
+.input option { background: var(--surface2); }
+.fieldError { color: var(--red); font-size: 11px; margin-top: 4px; }
+
+/* ── Panel ── */
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.panelHeader {
+  padding: 17px 22px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.panelTitle { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: -0.2px; }
+
+/* ── Empty ── */
+.empty { text-align: center; padding: 56px 20px; color: var(--text3); }
+.emptyIcon  { font-size: 36px; margin-bottom: 12px; }
+.emptyTitle { font-size: 14px; color: var(--text2); margin-bottom: 5px; font-family: var(--font-display); }
+.emptyDesc  { font-size: 12px; }
