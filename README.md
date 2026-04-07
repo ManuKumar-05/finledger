@@ -17,16 +17,6 @@ A production-ready full-stack finance dashboard with role-based access control, 
 
 ---
 
-## Demo Accounts
-
-| Username | Password    | Role    | Access                              |
-|----------|-------------|---------|-------------------------------------|
-| admin    | admin123    | Admin   | Full access — CRUD + Users + Analytics |
-| analyst  | analyst123  | Analyst | Read records + Analytics            |
-| viewer   | viewer123   | Viewer  | Read records only                   |
-
----
-
 ## Project Structure
 
 ```
@@ -127,38 +117,12 @@ finledger/
 
 ---
 
-# ═══════════════════════════════════════════════
-# STEP-BY-STEP SETUP & DEPLOYMENT GUIDE
-# ═══════════════════════════════════════════════
+## Run Locally
 
-## PHASE 1 — Prerequisites (Install Once)
-
-### Step 1 — Install Node.js
-1. Go to https://nodejs.org
-2. Download **Node.js v20 LTS** (Long Term Support)
-3. Run the installer — keep all defaults
-4. Verify installation — open Terminal / Command Prompt:
-   ```bash
-   node --version    # should print v20.x.x
-   npm --version     # should print 10.x.x
-   ```
-
-### Step 2 — Install Git
-1. Go to https://git-scm.com/downloads
-2. Download and install for your OS
-3. Verify:
-   ```bash
-   git --version    # should print git version 2.x.x
-   ```
-
----
-
-## PHASE 2 — Run Locally
-
-### Step 3 — Extract the project
+### Step 1 — Extract the project
 Unzip `finledger.zip` to any folder, e.g. `~/projects/finledger`
 
-### Step 4 — Setup the Backend
+### Step 2 — Setup the Backend
 
 Open Terminal in the `finledger` folder and run:
 
@@ -171,26 +135,6 @@ npm install
 ```
 
 You will see npm downloading packages. This takes 1–2 minutes.
-
-**Create the backend environment file:**
-
-```bash
-# Copy the example env file
-cp .env.example .env
-```
-
-Open `backend/.env` in any text editor and set:
-
-```env
-PORT=5000
-NODE_ENV=development
-JWT_SECRET=my_super_secret_key_minimum_32_characters_long
-JWT_EXPIRES_IN=7d
-DB_PATH=./data/finledger.db
-CORS_ORIGINS=http://localhost:3000
-```
-
-> ⚠️ **Important:** Change `JWT_SECRET` to any random string of at least 32 characters.
 
 **Seed the database with demo data:**
 
@@ -221,7 +165,7 @@ You should see:
 
 Open http://localhost:5000/api/docs in your browser — you should see the Swagger API documentation.
 
-### Step 5 — Setup the Frontend
+### Step 3 — Setup the Frontend
 
 **Open a NEW terminal window** (keep the backend running) and run:
 
@@ -232,20 +176,6 @@ cd frontend
 # Install frontend dependencies
 npm install
 ```
-
-**Create the frontend environment file:**
-
-```bash
-cp .env.example .env
-```
-
-Open `frontend/.env` and set:
-
-```env
-VITE_API_URL=
-```
-
-> Leave `VITE_API_URL` empty — Vite's proxy will automatically forward `/api` calls to `localhost:5000`
 
 **Start the frontend:**
 
@@ -259,219 +189,11 @@ You should see:
   ➜  Local:   http://localhost:3000/
 ```
 
-### Step 6 — Open the App
+### Step 4 — Open the App
 
 Open http://localhost:3000 in your browser.
 
-**Login with any demo account:**
-- `admin` / `admin123` → Full access
-- `analyst` / `analyst123` → Read + Analytics  
-- `viewer` / `viewer123` → Read only
-
 ---
-
-## PHASE 3 — Push to GitHub
-
-### Step 7 — Create a GitHub Account
-1. Go to https://github.com
-2. Click **Sign up** → create a free account
-3. Verify your email
-
-### Step 8 — Create a New Repository
-1. Click the **+** icon (top-right) → **New repository**
-2. Name it: `finledger`
-3. Set to **Public**
-4. Do NOT check "Initialize with README" (we have our own)
-5. Click **Create repository**
-
-### Step 9 — Push your code
-
-In your terminal (from the `finledger` root folder):
-
-```bash
-# Initialize git (if not already done)
-git init
-
-# Add all files
-git add .
-
-# First commit
-git commit -m "feat: initial FinLedger full-stack application"
-
-# Connect to your GitHub repo (replace YOUR_USERNAME)
-git remote add origin https://github.com/YOUR_USERNAME/finledger.git
-
-# Push to GitHub
-git branch -M main
-git push -u origin main
-```
-
-Go to `https://github.com/YOUR_USERNAME/finledger` — you should see all files.
-
----
-
-## PHASE 4 — Deploy Backend on Render (Free)
-
-### Step 10 — Create a Render Account
-1. Go to https://render.com
-2. Click **Get Started for Free**
-3. Sign up with your GitHub account (recommended — enables auto-deploy)
-
-### Step 11 — Create a Web Service
-
-1. Click **New +** → **Web Service**
-2. Connect your GitHub account if prompted
-3. Select your `finledger` repository
-4. Fill in the settings:
-
-| Field           | Value                              |
-|-----------------|------------------------------------|
-| Name            | `finledger-api`                    |
-| Region          | Singapore (closest to India)       |
-| Branch          | `main`                             |
-| Root Directory  | `backend`                          |
-| Runtime         | `Node`                             |
-| Build Command   | `npm install && npm run seed`      |
-| Start Command   | `npm start`                        |
-| Instance Type   | **Free**                           |
-
-5. Click **Advanced** → **Add Environment Variables** and add:
-
-| Key             | Value                              |
-|-----------------|------------------------------------|
-| NODE_ENV        | `production`                       |
-| JWT_SECRET      | (generate a 40+ char random string)|
-| JWT_EXPIRES_IN  | `7d`                               |
-| DB_PATH         | `./data/finledger.db`              |
-| PORT            | `10000`                            |
-| CORS_ORIGINS    | `*` (update after frontend deploy) |
-
-6. Scroll down → click **Create Web Service**
-
-Render will now build and deploy your backend. This takes **3–5 minutes**.
-
-### Step 12 — Add a Persistent Disk (Important for SQLite!)
-
-Free tier on Render has ephemeral storage — the database resets on each deploy.
-To persist data:
-
-1. In your Render service → **Disks** tab
-2. Click **Add Disk**
-3. Set:
-   - Name: `finledger-data`
-   - Mount Path: `/opt/render/project/src/data`
-   - Size: **1 GB** (free)
-4. Update your environment variable:
-   - `DB_PATH` → `/opt/render/project/src/data/finledger.db`
-5. Click **Save Changes** → service will redeploy
-
-### Step 13 — Verify Backend is Live
-
-Once deployed, Render gives you a URL like:
-`https://finledger-api.onrender.com`
-
-Test it:
-```
-https://finledger-api.onrender.com/health
-→ {"status":"ok","uptime":...}
-
-https://finledger-api.onrender.com/api/docs
-→ Opens Swagger UI
-```
-
-> ⚠️ Free Render services **spin down after 15 mins of inactivity**. First request after inactivity takes ~30 seconds to wake up.
-
----
-
-## PHASE 5 — Deploy Frontend on Vercel (Free)
-
-### Step 14 — Create a Vercel Account
-1. Go to https://vercel.com
-2. Click **Sign Up**
-3. Continue with GitHub (recommended)
-
-### Step 15 — Deploy Frontend
-
-1. Click **Add New Project**
-2. Click **Import** next to your `finledger` repository
-3. Configure:
-
-| Field               | Value                              |
-|---------------------|------------------------------------|
-| Framework Preset    | Vite                               |
-| Root Directory      | `frontend`                         |
-| Build Command       | `npm run build`                    |
-| Output Directory    | `dist`                             |
-| Install Command     | `npm install`                      |
-
-4. Click **Environment Variables** and add:
-
-| Key          | Value                                        |
-|--------------|----------------------------------------------|
-| VITE_API_URL | `https://finledger-api.onrender.com`         |
-
-> Replace with YOUR actual Render URL from Step 13
-
-5. Click **Deploy**
-
-Vercel builds and deploys in ~1 minute. You'll get a URL like:
-`https://finledger.vercel.app`
-
-### Step 16 — Update Backend CORS
-
-Now that the frontend URL is known, update the backend's CORS setting:
-
-1. Go to your Render service → **Environment**
-2. Update `CORS_ORIGINS`:
-   ```
-   https://finledger.vercel.app
-   ```
-3. Click **Save Changes** → backend redeploys automatically
-
----
-
-## PHASE 6 — Verify Everything Works
-
-### Step 17 — Full System Test
-
-1. Open `https://finledger.vercel.app` in browser
-2. Login with `admin` / `admin123`
-3. Verify Dashboard loads with charts and data
-4. Go to Records → add a new record
-5. Go to Analytics → verify charts load
-6. Go to Users → verify user management works
-7. Logout → login with `viewer` → verify Create/Edit buttons are hidden
-
-**Test the API directly:**
-```bash
-# Login
-curl -X POST https://finledger-api.onrender.com/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"admin123"}'
-
-# Copy the token from response, then:
-curl https://finledger-api.onrender.com/api/dashboard/summary \
-  -H "Authorization: Bearer YOUR_TOKEN_HERE"
-```
-
----
-
-## PHASE 7 — Submission Details
-
-### GitHub Repository URL
-```
-https://github.com/YOUR_USERNAME/finledger
-```
-
-### Live Demo URL
-```
-https://finledger.vercel.app
-```
-
-### API Documentation URL
-```
-https://finledger-api.onrender.com/api/docs
-```
 
 ### Primary Framework
 **Node.js (Express)**
