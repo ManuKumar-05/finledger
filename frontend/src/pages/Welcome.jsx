@@ -184,7 +184,7 @@ export default function Welcome() {
         <span className={s.footerRight}>
           <a href="https://github.com/manukumar-05/finledger" className={s.footerLink} target="_blank" rel="noreferrer">GitHub</a>
           {' · '}
-          <a href="/api/docs" className={s.footerLink} target="_blank" rel="noreferrer">API Docs</a>
+          <a href="https://finledger-api-3j48.onrender.com/api/docs/" className={s.footerLink} target="_blank" rel="noreferrer">API Docs</a>
         </span>
       </footer>
     </div>
